@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-app-bg: #101114;
+  --color-app-primary: #1C1D20;
+  --color-app-secondary: #757988;
+  --color-app-accent: #00FFC4;
+  --color-app-text: #F9F9F9;
+
+  --radius-2xl: 1rem; 
+}
+
+@layer base {
+  html { @apply font-sans text-[16pt] text-app-text; }
+  body { @apply min-h-screen p-[10px] bg-app-bg flex flex-col items-center; }
+  h1   { @apply mt-[100px] mb-5 text-5xl font-extrabold uppercase text-center text-app-accent; }
+}
+
+@layer components {
+  .wrapper { @apply w-[700px] max-w-full flex flex-col gap-[10px]; }
+
+  form { @apply relative; }
+
+  .disclaimer {
+    @apply flex justify-center items-center text-xs italic text-app-secondary;
+    
+  }
+
+  #todo-input {
+    @apply box-border py-3 px-5 w-full bg-transparent
+           border-2 border-app-secondary rounded-full
+           text-current caret-app-accent;
+  }
+  #todo-input:focus { @apply outline-none; }
+
+  #add-button {
+    @apply absolute top-0 right-0 h-full px-8
+           bg-app-accent border-0 rounded-full
+           font-semibold text-app-bg cursor-pointer;
+  }
+
+  .todo {
+    @apply mb-[10px] px-4 bg-app-primary rounded-[15px]
+           flex items-center;
+  }
+  .todo .todo-text {
+    @apply py-[15px] pl-2 pr-0 grow transition ease-linear duration-200;
+  }
+
+  .delete-button {
+  @apply p-[3px] bg-transparent border-0 flex justify-center items-center cursor-pointer text-app-text;
+}
+  .delete-button svg { @apply transition ease-linear duration-200 fill-current; }
+  .delete-button:hover svg { fill: #ff0033; }
+
+  .custom-checkbox {
+    @apply border-2 border-app-accent rounded-full
+           min-h-[20px] min-w-[20px]
+           flex justify-center items-center shrink-0
+           transition ease-linear duration-200 cursor-pointer;
+  }
+
+  /* checkbox relationships */
+  input[type="checkbox"] { @apply hidden; }
+  input[type="checkbox"]:checked ~ .custom-checkbox { @apply bg-app-accent; }
+  input[type="checkbox"]:checked ~ .custom-checkbox svg { fill: var(--color-app-primary); }
+  input[type="checkbox"]:checked ~ .todo-text { @apply line-through text-app-secondary; }
+
+  /* Lists as vertical stacks */
+  #todo-list, #completed-list { @apply list-none p-0 flex flex-col gap-[10px]; }
+
+  /* Drag & drop visuals */
+  .todo.dragging { @apply opacity-50 outline outline-2 outline-dashed outline-app-secondary; }
+  ul.drop-target { @apply outline outline-2 outline-dashed outline-app-secondary outline-offset-[6px] rounded-[12px]; }
+}
+
+@media (max-width: 500px) {
+  html { @apply text-[12pt]; }
+  #add-button { @apply static w-full mt-[10px] py-[15px] h-auto; }
+  h1 { @apply mt-[50px] text-[15vw]; }
+}

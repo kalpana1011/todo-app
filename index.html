@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Todos</title>
+    <script type="module" src="/src/main.js" defer></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Todo App</h1>
+      <div class="wrapper">
+        <form>
+           <input id="todo-input" type="text" 
+            placeholder="write anything and hit enter to add" autocomplete="off">
+            <button id="add-button">ADD</button>
+        </form>
+         <p class="disclaimer " >(drag todos to sort-out.)</p>
+
+      
+        <ul id="todo-list"></ul>
+
+        <div id="divider" class="h-1 bg-[#757988] mt-4 mb-4 hidden"></div>
+        <ul id="completed-list"></ul>
+      </div>
+    </div>
+  </body>
+</html>
